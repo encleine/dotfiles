@@ -1,0 +1,6 @@
+services:
+  'git@gitlab.baly.dev': 'gitlab:gitlab.baly.dev'
+
+reporting: "off"
+startupPopupVersion: 1
+disableStartupPopups: true

@@ -1,0 +1,19 @@
+# dotfiles
+*
+
+!.tmux.conf
+!.zshrc
+!.gitconfig
+!.gitignore
+
+
+!.config/
+!.config/kitty/
+!.config/lazygit/
+
+# kitty config 
+!.config/kitty/kitty.conf
+!.config/kitty/options.ini
+
+# lazygit config 
+!.config/lazygit/config.yml

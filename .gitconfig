@@ -1,0 +1,12 @@
+
+[include]
+  path = .gitconfig-personal
+
+[includeIf "gitdir/i:~/baly/**"]
+  path = .gitconfig-work
+
+[credential]
+  helper = store
+
+[init]
+  defaultBranch = main
