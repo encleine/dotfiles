@@ -11,6 +11,7 @@
 !.config/
 !.config/kitty/
 !.config/lazygit/
+!.config/posting/
 
 # kitty config 
 !.config/kitty/kitty.conf
@@ -18,3 +19,7 @@
 
 # lazygit config 
 !.config/lazygit/config.yml
+
+# posting config / theme
+!.config/posting/config.yaml
+!.config/posting/soda.yaml

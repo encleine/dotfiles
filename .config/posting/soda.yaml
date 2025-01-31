@@ -1,0 +1,14 @@
+name: 'soda'  # use this name in your config file
+primary: '#9c64fe'  # buttons, fixed table columns
+secondary: '#fa8419'  # method selector, some minor labels
+accent: '#f3005f'  # header text, scrollbars, cursors, focus highlights
+background: '#191919' # background colors
+surface: '#222426'  # panels, etc
+error: '#f3005f'  # error messages
+success: '#97e023'  # success messages
+warning: '#dfd561'  # warning messages
+
+# Optional metadata
+author: tanvirtin
+description: monokai soda color scheme taking from tanvirtin on github
+homepage: https://github.com/tanvirtin/monokai.nvim
