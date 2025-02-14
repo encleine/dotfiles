@@ -3,11 +3,8 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export PATH=$PATH:/home/enc/.local/bin
-export PATH=$PATH:/home/enc/go/bin
-export PATH=$PATH:/home/enc/.cargo/bin
-export PATH=$PATH:/home/enc/nand2tetris/n2t-software-suite
-export NVM_DIR="$HOME/.nvm"
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/go/bin
 
 ZSH_THEME="robbyrussell"
 
@@ -34,6 +31,8 @@ alias runProf="go tool pprof -http=localhost:8080 cpu.prof"
 alias rename="git commit --amend"
 alias undo="git reset HEAD~"
 
+alias train=" while true; do sl | lolcat; clear; done"
+
 
 function discard () {
   if [[ "$1" == "" ]]; then git restore . ;
@@ -52,3 +51,5 @@ function checkout () {
 }
 
 eval "$(zoxide init zsh --cmd cd)"
+
+export PATH=$PATH:$HOME/.spicetify
