@@ -5,15 +5,22 @@
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/.cargo/bin
 
 ZSH_THEME="robbyrussell"
 
-plugins=(
+plugins+=(
   nats
   golang
   docker 
   git
+  zsh-vi-mode
 )
+
+zvm_config() {
+	ZVM_VI_INSERT_ESCAPE_BINDKEY='^X'
+	ZVM_LINE_INIT_MODE=$ZVM_MODE_LAST
+}
 
 source $ZSH/oh-my-zsh.sh
 source ~/.zshrc-private
@@ -30,6 +37,8 @@ alias buildProf="go test -run=XXX -cpuprofile cpu.prof -bench ."
 alias runProf="go tool pprof -http=localhost:8080 cpu.prof"
 alias rename="git commit --amend"
 alias undo="git reset HEAD~"
+alias work="distrobox enter work"
+alias open="xdg-open"
 
 alias train=" while true; do sl | lolcat; clear; done"
 
@@ -52,4 +61,9 @@ function checkout () {
 
 eval "$(zoxide init zsh --cmd cd)"
 
-export PATH=$PATH:$HOME/.spicetify
+# bun completions
+[ -s "/home/enc/.bun/_bun" ] && source "/home/enc/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
