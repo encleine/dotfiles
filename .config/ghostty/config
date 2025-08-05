@@ -1,0 +1,14 @@
+font-family = Cartograph CF Italic
+font-size   = 10
+
+window-padding-x = 15
+window-padding-y = 15
+
+theme = curent-theme.conf
+
+window-decoration = client
+gtk-tabs-location = bottom
+mouse-hide-while-typing = true
+window-theme = ghostty
+gtk-titlebar=false
+gtk-single-instance=true
