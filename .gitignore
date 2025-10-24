@@ -14,6 +14,7 @@
 !.config/fuzzel/
 !.config/ghostty/
 !.config/niri/
+!.config/quickshell/
 
 # niri config
 !.config/niri/config.kdl
@@ -32,6 +33,9 @@
 # posting config / theme
 !.config/posting/config.yaml
 !.config/posting/soda.yaml
+
+# DankMaterialShell config
+!.config/quickshell/dms
 
 
 # ghostty themes 
