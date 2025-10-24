@@ -15,12 +15,18 @@ plugins+=(
   docker 
   git
   zsh-vi-mode
+  battery
+  dnf
+  zoxide
+  ssh
 )
 
 zvm_config() {
 	ZVM_VI_INSERT_ESCAPE_BINDKEY='^X'
 	ZVM_LINE_INIT_MODE=$ZVM_MODE_LAST
 }
+
+RPROMPT='$(battery_pct_prompt)'
 
 source $ZSH/oh-my-zsh.sh
 source ~/.zshrc-private
