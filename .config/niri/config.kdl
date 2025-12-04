@@ -25,10 +25,6 @@ input {
         natural-scroll
     }
 
-    mouse {
-        scroll-method "on-button-down"
-    }
-
     trackpoint { off; }
 }
 
@@ -62,7 +58,7 @@ layout {
 }
 
 layer-rule {
-    match namespace="^quickshell-wallpaper$"
+    match namespace="dms:blurwallpaper"
     place-within-backdrop true
 }
 
@@ -73,10 +69,6 @@ window-rule {
     tiled-state true
     draw-border-with-background false
 }
-
-spawn-at-startup "quickshell"
-spawn-at-startup "xwayland-satellite"
-spawn-at-startup "dms" "run"
 
 prefer-no-csd
 
@@ -94,8 +86,21 @@ window-rule {
 
 window-rule {
 
+    match app-id=r#"steam$"# 
+    block-out-from "screencast"
+}
+
+window-rule {
+
     match app-id=r#"steam$"# title="^Steam Big Picture Mode$"
     open-fullscreen true
+    block-out-from "screencast"
+}
+
+layer-rule {
+    match namespace="notifications"
+
+    block-out-from "screencast"
 }
 
 window-rule {
@@ -105,6 +110,10 @@ window-rule {
     block-out-from "screen-capture"
 }
 
+environment {
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+}
+
 
 binds {
 
@@ -112,7 +121,11 @@ binds {
 
     Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
 
-    Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn-sh "~/.config/rofi/launchers/type-6/launcher.sh"; }
+    // Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn-sh "~/.config/rofi/launchers/type-6/launcher.sh"; }
+
+    Mod+D hotkey-overlay-title="Application Launcher" { 
+        spawn "dms" "ipc" "call" "spotlight" "toggle"; 
+    }
 
     Mod+G hotkey-overlay-title="Clipboard Manager" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
 
@@ -238,9 +251,5 @@ binds {
     // The allow-inhibiting=false property can be applied to other binds as well,
     // which ensures niri always processes them, even when an inhibitor is active.
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-
-    // The quit action will show a confirmation dialog to avoid accidental exits.
-    Mod+Shift+E { quit; }
-    Ctrl+Alt+Delete { quit; }
 
 }
