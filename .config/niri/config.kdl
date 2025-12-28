@@ -32,45 +32,12 @@ config-notification {
     disable-failed
 }
 
-layout {
-    gaps 8
-
-    background-color "transparent"
-    center-focused-column "never"
-
-    preset-column-widths {
-        proportion 0.5
-        proportion 0.25
-    }
-
-    default-column-width { proportion 0.5; }
-
-    focus-ring { off; }
-
-    border {
-
-        width 2
-
-        active-gradient from="#8a3ffc" to="#ee5396" angle=45
-        inactive-gradient from="#198038" to="#393939" angle=45 relative-to="workspace-view" 
-        urgent-color "#d12771"
-    }
-}
-
-layer-rule {
-    match namespace="dms:blurwallpaper"
-    place-within-backdrop true
-}
-
-
 window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
     tiled-state true
     draw-border-with-background false
 }
-
-prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
@@ -97,9 +64,21 @@ window-rule {
     block-out-from "screencast"
 }
 
-layer-rule {
-    match namespace="notifications"
+window-rule {
 
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+}
+
+window-rule {
+
+    match app-id=r#"org.quickshell$"#
+    open-floating true
+}
+
+layer-rule {
+
+    match namespace="dms:notification-popup"
     block-out-from "screencast"
 }
 
@@ -114,61 +93,34 @@ environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
-
 binds {
 
-    Mod+Shift+Slash { show-hotkey-overlay; }
+    Print hotkey-overlay-title="Screenshot (Interactive)" { screenshot; }
 
     Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-
-    // Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn-sh "~/.config/rofi/launchers/type-6/launcher.sh"; }
-
-    Mod+D hotkey-overlay-title="Application Launcher" { 
-        spawn "dms" "ipc" "call" "spotlight" "toggle"; 
-    }
-
-    Mod+G hotkey-overlay-title="Clipboard Manager" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
-
-
-    Mod+Shift+N hotkey-overlay-title="Notepad" { spawn "dms" "ipc" "call" "notepad" "toggle";  }
-
-    Mod+Alt+L hotkey-overlay-title="Lock Screen" { spawn "dms" "ipc" "call" "lock" "lock"; }
-    
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "increment" "3"; }
-
-    XF86AudioLowerVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "decrement" "3"; }
-
-    XF86AudioMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "mute"; }
-
-    XF86AudioMicMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "micmute"; }
-    
-    XF86MonBrightnessUp allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" ""; }
-
-    XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" ""; }  
-
     Mod+O repeat=false { toggle-overview; }
-
     Mod+Q repeat=false { close-window; }
 
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-or-workspace-down; }
     Mod+Up    { focus-window-or-workspace-up; }
     Mod+Right { focus-column-right; }
-	//
     Mod+H     { focus-column-left; }
     Mod+J     { focus-window-or-workspace-down; }
     Mod+K     { focus-window-or-workspace-up; }
     Mod+L     { focus-column-right; }
-
+	
     Mod+Ctrl+Left  { move-column-left; }
-    Mod+Ctrl+Down  { move-window-down-or-to-workspace-down; }
-    Mod+Ctrl+Up    { move-window-up-or-to-workspace-up; }
     Mod+Ctrl+Right { move-column-right; }
-	//
     Mod+Ctrl+H     { move-column-left; }
-    Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
-    Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
     Mod+Ctrl+L     { move-column-right; }
+
+    // Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
+    // Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
+	Mod+Ctrl+Down  { move-window-to-workspace-down; }
+	Mod+Ctrl+Up    { move-window-to-workspace-up; }
+    Mod+Ctrl+J     { move-window-to-workspace-down; }
+    Mod+Ctrl+K     { move-window-to-workspace-up; }
 
     Mod+Shift+Left  { focus-monitor-left; }
     Mod+Shift+Down  { focus-monitor-down; }
@@ -190,66 +142,33 @@ binds {
 
     Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
     Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+
     Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
     Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
 
     Mod+WheelScrollRight      { focus-column-right; }
     Mod+WheelScrollLeft       { focus-column-left; }
     Mod+Ctrl+WheelScrollRight { move-column-right; }
-    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
 
+    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
     Mod+Shift+WheelScrollDown      { focus-column-right; }
     Mod+Shift+WheelScrollUp        { focus-column-left; }
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
-    // Switches focus between the current and the previous workspace.
-    Mod+Tab { focus-workspace-previous; }
-
-    // The following binds move the focused window in and out of a column.
-    // If the window is alone, they will consume it into the nearby column to the side.
-    // If the window is already in a column, they will expel it out.
-    Mod+BracketLeft  { consume-or-expel-window-left; }
-    Mod+BracketRight { consume-or-expel-window-right; }
-
-    // Consume one window from the right to the bottom of the focused column.
-    Mod+Comma  { consume-window-into-column; }
-    // Expel the bottom window from the focused column to the right.
-    Mod+Period { expel-window-from-column; }
-
     Mod+R { switch-preset-column-width; }
-    Mod+Shift+R { switch-preset-window-height; }
-    Mod+Ctrl+R { reset-window-height; }
     Mod+F { maximize-column; }
-    Mod+Shift+F { fullscreen-window; }
-
-    // Expand the focused column to space not taken up by other fully visible columns.
-    // Makes the column "fill the rest of the space".
-    Mod+Ctrl+F { expand-column-to-available-width; }
-
-    // Center visible column on screen.
+	Mod+Shift+F { fullscreen-window; }
     Mod+C { center-column; }
-
-    // Move the focused window between the floating and the tiling layout.
-    Mod+V       { toggle-window-floating; }
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
-
-
-    // Action to switch layouts.
+	Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    Mod+Ctrl+V       { toggle-window-floating; }
     Mod+Space       { switch-layout "next"; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
-
-    // Applications such as remote-desktop clients and software KVM switches may
-    // request that niri stops processing the keyboard shortcuts defined here
-    // so they may, for example, forward the key presses as-is to a remote machine.
-    // It's a good idea to bind an escape hatch to toggle the inhibitor,
-    // so a buggy application can't hold your session hostage.
-    //
-    // The allow-inhibiting=false property can be applied to other binds as well,
-    // which ensures niri always processes them, even when an inhibitor is active.
-    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-
 }
+
+
+include "dms/colors.kdl"
+include "dms/layout.kdl"
+include "dms/alttab.kdl"
+include "dms/binds.kdl"
+include "dms/wpblur.kdl"

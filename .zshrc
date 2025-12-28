@@ -34,7 +34,7 @@ source ~/.zshrc-private
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-alias air="air && clear"
+# alias air="air && clear"
 alias cl="clear"
 alias pull="git pull"
 alias vi="nvim"
@@ -43,7 +43,7 @@ alias buildProf="go test -run=XXX -cpuprofile cpu.prof -bench ."
 alias runProf="go tool pprof -http=localhost:8080 cpu.prof"
 alias rename="git commit --amend"
 alias undo="git reset HEAD~"
-alias work="distrobox enter work"
+# alias work="distrobox enter work"
 alias open="xdg-open"
 
 alias train=" while true; do sl | lolcat; clear; done"
