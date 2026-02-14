@@ -1,16 +1,44 @@
-font-family = Cartograph CF Italic
+# Font Configuration
 font-size   = 10
+font-family = Cartograph CF Italic
 
-window-padding-x = 15
-window-padding-y = 15
+# Window Configuration
+window-theme = ghostty
+window-decoration = false
+window-padding-x = 12
+window-padding-y = 12
 
-theme = curent-theme.conf
+# Cursor Configuration
+cursor-style = block
+cursor-style-blink = true
+
+# Scrollback
+scrollback-limit = 3023
+
+# Terminal features
+mouse-hide-while-typing = true
+copy-on-select = false
+confirm-close-surface = false
+
+# Disable annoying copied to clipboard
 app-notifications = no-clipboard-copy,no-config-reload
 
-window-decoration = client
-gtk-tabs-location = bottom
-mouse-hide-while-typing = true
-window-theme = ghostty
-gtk-titlebar=false
-gtk-single-instance=true
+# Key bindings for common actions
+keybind = ctrl+plus=increase_font_size:1
+keybind = ctrl+minus=decrease_font_size:1
+keybind = ctrl+zero=reset_font_size
 
+# Tab configuration
+gtk-titlebar = false
+gtk-tabs-location = bottom
+
+# Shell integration
+shell-integration = detect
+shell-integration-features = cursor,sudo,title,no-cursor
+keybind = shift+enter=text:\n
+
+# Rando stuff
+gtk-single-instance = true
+
+
+theme = curent-theme.conf
