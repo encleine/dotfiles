@@ -68,6 +68,7 @@ window-rule {
 
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
     default-floating-position x=10 y=10 relative-to="bottom-right"
+	open-focused false
 }
 
 window-rule {
@@ -89,6 +90,19 @@ window-rule {
     block-out-from "screen-capture"
 }
 
+window-rule {
+    match title="Kando Menu"
+    open-floating true
+    focus-ring { off; }
+    border { off; }
+    shadow { off; }
+    default-floating-position x=0 y=0
+}
+
+binds {
+    MouseMiddle repeat=false { spawn "kando" "--menu" "Example Menu" "--trigger" "hover"; }
+}
+
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
@@ -101,3 +115,5 @@ include "dms/binds.kdl"
 include "dms/wpblur.kdl"
 include "dms/cursor.kdl"
 include "dms/outputs.kdl"
+
+include "dms/windowrules.kdl"
