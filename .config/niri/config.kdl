@@ -26,6 +26,11 @@ input {
     }
 
     trackpoint { off; }
+    mouse {
+        accel-profile "flat"
+        accel-speed 0.9
+        scroll-factor 0.9
+    }
 }
 
 config-notification {
@@ -51,11 +56,11 @@ window-rule {
     default-window-height { proportion 0.3; }
 }
 
-window-rule {
-
-    match app-id=r#"steam$"# 
-    block-out-from "screencast"
-}
+// window-rule {
+//
+//     match app-id=r#"steam$"# 
+//     block-out-from "screencast"
+// }
 
 window-rule {
 
@@ -99,14 +104,25 @@ window-rule {
     default-floating-position x=0 y=0
 }
 
-binds {
-    MouseMiddle repeat=false { spawn "kando" "--menu" "Example Menu" "--trigger" "hover"; }
-}
-
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
+
+window-rule {
+    match app-id=r#"zen$"#
+
+    background-effect {
+        blur true
+        xray true
+    }
+}
+
+binds {
+    Mod+1 { set-dynamic-cast-window; }
+    Mod+2 { set-dynamic-cast-monitor; }
+    Mod+3 { clear-dynamic-cast-target; }
+}
 
 include "dms/colors.kdl"
 include "dms/layout.kdl"
