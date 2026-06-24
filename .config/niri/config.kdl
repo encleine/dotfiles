@@ -20,6 +20,7 @@ input {
     }
 
     touchpad {
+        // off
         tap
         dwt
         natural-scroll
@@ -28,7 +29,7 @@ input {
     trackpoint { off; }
     mouse {
         accel-profile "flat"
-        accel-speed 0.9
+        accel-speed 1.0
         scroll-factor 0.9
     }
 }
@@ -73,6 +74,7 @@ window-rule {
 
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
     default-floating-position x=10 y=10 relative-to="bottom-right"
+    open-floating true
 	open-focused false
 }
 
