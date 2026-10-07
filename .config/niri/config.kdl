@@ -20,7 +20,7 @@ input {
     }
 
     touchpad {
-        // off
+        off
         tap
         dwt
         natural-scroll
@@ -29,8 +29,8 @@ input {
     trackpoint { off; }
     mouse {
         accel-profile "flat"
-        accel-speed 1.0
-        scroll-factor 0.9
+        // accel-speed 0.0
+        // scroll-factor 0.0
     }
 }
 
@@ -57,11 +57,18 @@ window-rule {
     default-window-height { proportion 0.3; }
 }
 
-// window-rule {
-//
-//     match app-id=r#"steam$"# 
-//     block-out-from "screencast"
-// }
+window-rule {
+
+    match app-id=r#"steam$"# 
+    block-out-from "screencast"
+}
+
+
+window-rule {
+
+    match app-id=r#"com.github.IsmaelMartinez.teams_for_linux$"# 
+    block-out-from "screencast"
+}
 
 window-rule {
 
@@ -125,6 +132,8 @@ binds {
     Mod+2 { set-dynamic-cast-monitor; }
     Mod+3 { clear-dynamic-cast-target; }
 }
+
+prefer-no-csd
 
 include "dms/colors.kdl"
 include "dms/layout.kdl"
